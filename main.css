@@ -67,6 +67,7 @@
 
 .input-name {
   font-size: 2rem;
+  max-width: 80vw;
 }
 
 #submit {
