@@ -48,7 +48,7 @@ class Cat {
   fallDown() {
       this.$el.removeClass('shaking');
       this.$el.addClass('fall-down');
-      this.fallDownCount = 100;
+      this.fallDownCount = 60;
       this.randSpeed();
   }
 
