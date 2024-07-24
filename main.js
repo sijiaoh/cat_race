@@ -4,6 +4,7 @@ let goalPos = 0;
 class Cat {
   constructor($el, name, { x, y }) {
     this.$el = $el;
+    this.name = name;
     this.$el.find('.cat-name').text(name);
 
     this.defaultPos = { x: x, y: y };
@@ -14,6 +15,19 @@ class Cat {
     this.fallDownJudgementTimeCount = 0;
 
     this.randSpeed();
+  }
+
+  setCats(cats) {
+    this.cats = cats;
+  }
+
+  getRank() {
+    this.cats.sort((a, b) => b.pos.x - a.pos.x);
+    return this.cats.index(this) + 1;
+  }
+
+  isTop() {
+    return this.getRank() === 1;
   }
 
   update() {
@@ -28,7 +42,8 @@ class Cat {
     if (this.fallDownJudgementTimeCount > 100) {
       this.fallDownJudgementTimeCount = 0;
 
-      const isFallDown = Math.random() < 0.3;
+      const fallDownProbability = this.isTop() ? 0.6 : 0.3;
+      const isFallDown = Math.random() < fallDownProbability;
       if (!isFallDown) return;
 
       this.fallDown();
@@ -94,6 +109,10 @@ function startRace(names) {
 
     return new Cat($cat, name, { x: 0, y: 150 * index });
   }).filter(cat => cat != null);
+
+  cats.each((_, cat) => {
+    cat.setCats(cats);
+  });
 
   raceIntervalId = setInterval(() => {
     cats.each((_, cat) => {
