@@ -98,7 +98,7 @@ class Cat {
 
 function goalCelebration(cats) {
   cats.each((_, cat) => {
-    if (cat.isGoaled()) {
+    if (cat.isTop()) {
       cat.run();
     }
     else {
