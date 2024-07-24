@@ -53,7 +53,7 @@ class Cat {
   }
 
   randSpeed() {
-    this.speed = 1 + Math.random() * 1;
+    this.speed = (1 + Math.random() * 2) * goalPos / 1000;
   }
 
   warpToPos({ x, y }) {
