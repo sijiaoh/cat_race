@@ -108,6 +108,10 @@ function goalCelebration(cats) {
 }
 
 function startRace(names) {
+  gtag('event', 'startRace', {
+    'value': names.toArray().join(', '),
+  });
+
   $('#race').show();
 
   const $goal = $('#goal');
@@ -154,6 +158,7 @@ $(() => {
     }
 
     $('#input').hide();
+
     startRace(names);
   });
 });
